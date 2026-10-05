@@ -94,6 +94,6 @@ reste masqué. En cas de doute, colle ton texte sur jsonlint.com pour le vérifi
 
 ## Modifier le reste du site
 - Textes : directement dans `index.html`.
-- Logo : la marque « BANDIPERF » est écrite en texte en attendant le vrai logo.
-  Remplace les blocs `<span class="plein">BANDI</span><span class="contour">PERF</span>` par une image.
+- Logo : `logo.svg` (barre du haut et pied de page). Favicons : `favicon.svg`, `favicon-32.png`, `favicon-180.png`.
+  Image d'aperçu quand le lien du site est partagé sur les réseaux : `partage.png`.
 - Mentions légales : à compléter dès la création d'une structure (voir le commentaire dans le fichier).
