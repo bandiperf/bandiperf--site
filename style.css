@@ -1,0 +1,170 @@
+/* BandiPerf — vitrine (direction « Ligne rouge ») */
+@import url("https://fonts.googleapis.com/css2?family=Saira+Condensed:ital,wght@0,600;0,700;1,700;1,800&family=Barlow:wght@400;500;600;700&display=swap");
+
+:root {
+  --noir: #0B0B0C;
+  --panneau: #151516;
+  --trait: #262628;
+  --ivoire: #F2F0EC;
+  --acier: #9A9AA1;
+  --rouge: #FF3B2F;
+  --grenat: #A3160F;
+  --disp: "Saira Condensed", "Arial Narrow", sans-serif;
+  --sans: "Barlow", "Segoe UI", sans-serif;
+  --page: min(1180px, 100% - 2 * clamp(20px, 5vw, 56px));
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--noir); color: var(--ivoire); font-family: var(--sans); font-size: 1.06rem; line-height: 1.55; }
+a { color: inherit; }
+img, svg { max-width: 100%; }
+:focus-visible { outline: 2px solid var(--rouge); outline-offset: 3px; }
+.wrap { width: var(--page); margin-inline: auto; }
+
+/* Marque (provisoire, en attendant le logo) */
+.marque { font-family: var(--disp); font-style: italic; font-weight: 800; letter-spacing: -.01em; text-decoration: none; line-height: 1; display: inline-flex; }
+.marque .plein { background: linear-gradient(180deg, var(--rouge), var(--grenat)); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .04em; }
+.marque .contour { color: transparent; -webkit-text-stroke: 1px var(--grenat); }
+
+/* En-tête */
+.entete { position: sticky; top: 0; z-index: 10; background: rgba(11, 11, 12, .88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--trait); }
+.entete .wrap { display: flex; align-items: center; gap: 2rem; min-height: 68px; }
+.entete .marque { font-size: 1.7rem; }
+.entete nav { display: flex; gap: 1.6rem; margin-left: auto; }
+.entete nav a { text-decoration: none; color: var(--acier); font-weight: 600; font-size: .98rem; }
+.entete nav a:hover { color: var(--ivoire); }
+
+.bouton { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 1.4rem;
+  font-family: var(--sans); font-weight: 700; font-size: 1rem; text-decoration: none; border-radius: 3px;
+  border: 1px solid var(--trait); color: var(--ivoire); background: var(--panneau); transition: filter .15s, border-color .15s; }
+.bouton:hover { border-color: var(--acier); }
+.bouton.rouge { background: linear-gradient(180deg, var(--rouge), var(--grenat)); border-color: var(--grenat); color: #fff; }
+.bouton.rouge:hover { filter: brightness(1.1); }
+.bouton.petit { min-height: 40px; padding: 0 1rem; font-size: .92rem; }
+
+/* Ouverture */
+.ouverture { padding: clamp(56px, 9vw, 120px) 0 clamp(48px, 7vw, 96px); overflow: hidden; }
+.ouverture .wrap { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+.slogan { margin: 0; font-family: var(--disp); font-style: italic; font-weight: 800; text-transform: uppercase;
+  font-size: clamp(2.4rem, 6vw, 5.6rem); line-height: .9; letter-spacing: -.015em; hyphens: auto; -webkit-hyphens: auto; }
+.ouverture .wrap > div { min-width: 0; }
+.slogan .l1 { display: block; color: transparent; -webkit-text-stroke: 2px var(--ivoire); }
+.slogan .l2 { display: block; background: linear-gradient(180deg, var(--rouge), var(--grenat)); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .05em; }
+.chapo { max-width: 34em; margin: 1.8rem 0 2.2rem; color: var(--acier); font-size: 1.15rem; }
+.chapo strong { color: var(--ivoire); font-weight: 600; }
+.actions { display: flex; gap: .8rem; flex-wrap: wrap; }
+
+.banc { position: relative; }
+.banc svg { display: block; width: 100%; height: auto; }
+.banc .grille line { stroke: var(--trait); stroke-width: 1; }
+.banc .axe { fill: var(--acier); font-family: var(--sans); font-size: 13px; }
+.banc .origine { fill: none; stroke: var(--acier); stroke-width: 2.5; stroke-dasharray: 7 7; }
+.banc .surmesure { fill: none; stroke: url(#degrade-courbe); stroke-width: 4.5; stroke-linecap: round;
+  stroke-dasharray: 900; stroke-dashoffset: 900; animation: trace 2.2s .3s cubic-bezier(.3, .7, .2, 1) forwards; }
+.banc .gain { fill: url(#degrade-gain); opacity: 0; animation: apparait 1s 1.6s forwards; }
+.banc .legende { fill: var(--ivoire); font-family: var(--sans); font-size: 14px; font-weight: 600; }
+.banc .legende.grise { fill: var(--acier); font-weight: 500; }
+@keyframes trace { to { stroke-dashoffset: 0; } }
+@keyframes apparait { to { opacity: 1; } }
+
+/* Sections */
+section { scroll-margin-top: 80px; }
+.bloc { padding: clamp(64px, 9vw, 112px) 0; border-top: 1px solid var(--trait); }
+.titre { margin: 0 0 .6rem; font-family: var(--disp); font-style: italic; font-weight: 800; text-transform: uppercase;
+  font-size: clamp(2.3rem, 5vw, 3.8rem); line-height: .95; letter-spacing: -.01em; }
+.intro { max-width: 40em; color: var(--acier); margin: 0 0 2.6rem; font-size: 1.1rem; }
+
+/* Prestations : fiche technique */
+.fiche { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(24px, 5vw, 72px); }
+.fiche li { padding: 1.4rem 0; border-top: 1px solid var(--trait); display: grid; grid-template-columns: minmax(0, 13rem) minmax(0, 1fr); gap: 1.2rem; align-items: baseline; }
+.fiche h3 { margin: 0; font-family: var(--disp); font-style: italic; font-weight: 700; font-size: 1.75rem; line-height: 1; }
+.fiche p { margin: 0; color: var(--acier); }
+
+.specialite { margin-top: clamp(40px, 6vw, 72px); padding: clamp(24px, 4vw, 40px); background: var(--panneau); border: 1px solid var(--trait); border-radius: 4px;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(20px, 4vw, 48px); align-items: center; }
+.specialite .calculateurs { font-family: var(--disp); font-style: italic; font-weight: 800; font-size: clamp(2.6rem, 6vw, 4.4rem); line-height: .9; margin: 0; color: var(--rouge); }
+.specialite p { margin: 0; color: var(--acier); }
+.specialite p strong { color: var(--ivoire); }
+
+/* Équipe */
+.equipe { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 4vw, 48px); }
+.profil { padding-top: 1.4rem; border-top: 3px solid var(--rouge); }
+.alias { margin: 0; font-family: var(--disp); font-style: italic; font-weight: 800; font-size: clamp(3.4rem, 8vw, 5.6rem); line-height: .9;
+  color: transparent; -webkit-text-stroke: 1.5px var(--ivoire); }
+.prenom { margin: .5rem 0 1rem; font-family: var(--disp); font-style: italic; font-weight: 700; font-size: 1.6rem; color: var(--rouge); }
+.profil p { margin: 0; color: var(--acier); max-width: 32em; }
+
+/* Déroulé */
+.etapes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(16px, 3vw, 32px); counter-reset: etape; }
+.etapes li { counter-increment: etape; }
+.etapes li::before { content: counter(etape); display: block; font-family: var(--disp); font-style: italic; font-weight: 800; font-size: 3.4rem; line-height: 1; color: var(--grenat); margin-bottom: .6rem; }
+.etapes h3 { margin: 0 0 .4rem; font-size: 1.15rem; }
+.etapes p { margin: 0; color: var(--acier); font-size: 1rem; }
+.etapes a { color: var(--ivoire); }
+
+/* Garages : bloc rouge */
+.garages { position: relative; background: linear-gradient(135deg, var(--rouge), var(--grenat) 75%); color: #fff;
+  clip-path: polygon(0 4vw, 100% 0, 100% calc(100% - 4vw), 0 100%); padding: clamp(96px, 12vw, 160px) 0; margin: 0; border: 0; }
+.garages .titre { color: #fff; }
+.garages .intro { color: rgba(255, 255, 255, .86); }
+.garages .colonnes { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 64px); align-items: start; }
+.garages ul { margin: 0 0 2rem; padding-left: 1.1rem; color: rgba(255, 255, 255, .92); }
+.garages li { margin-bottom: .45rem; }
+.garages .bouton { background: var(--noir); border-color: var(--noir); color: #fff; }
+.garages .bouton:hover { filter: none; background: #000; }
+.garages .bouton.clair { background: transparent; border-color: rgba(255, 255, 255, .7); }
+.garages .bouton.clair:hover { border-color: #fff; background: rgba(0, 0, 0, .12); }
+.partenaire { background: rgba(0, 0, 0, .22); border-radius: 4px; padding: 1.6rem; }
+.partenaire h3 { margin: 0 0 .5rem; font-family: var(--disp); font-style: italic; font-weight: 800; font-size: 2rem; line-height: 1; }
+.partenaire p { margin: 0 0 1rem; color: rgba(255, 255, 255, .88); }
+.partenaire a { font-weight: 700; }
+
+/* Vidéos */
+.reseaux { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 3vw, 32px); }
+.reseau { display: flex; flex-direction: column; gap: .3rem; padding: 1.6rem; border: 1px solid var(--trait); border-radius: 4px; text-decoration: none; background: var(--panneau); transition: border-color .15s; }
+.reseau:hover { border-color: var(--rouge); }
+.reseau .nom { font-family: var(--disp); font-style: italic; font-weight: 800; font-size: 2.4rem; line-height: 1; }
+.reseau .compte { color: var(--rouge); font-weight: 700; font-size: 1.1rem; }
+
+/* Contact */
+.contact { text-align: left; }
+.email { display: inline-block; margin: .4rem 0 1rem; font-family: var(--disp); font-style: italic; font-weight: 800;
+  font-size: clamp(2rem, 6.4vw, 5rem); line-height: 1; text-decoration: none; color: var(--ivoire); border-bottom: 4px solid var(--rouge); overflow-wrap: anywhere; }
+.email:hover { color: var(--rouge); }
+.contact .astuce { color: var(--acier); max-width: 38em; margin: 0; }
+
+/* Pied de page */
+.pied { border-top: 1px solid var(--trait); padding: 2.4rem 0 3rem; color: var(--acier); font-size: .95rem; }
+.pied .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: baseline; }
+.pied .marque { font-size: 1.4rem; }
+.pied nav { display: flex; gap: 1.4rem; flex-wrap: wrap; margin-left: auto; }
+.pied nav a { color: var(--acier); }
+.pied nav a:hover { color: var(--ivoire); }
+.pied .avertissement { flex-basis: 100%; margin: .4rem 0 0; font-size: .88rem; }
+
+/* Page mentions légales */
+.legal { padding: clamp(48px, 7vw, 88px) 0; max-width: 46rem; }
+.legal h2 { font-family: var(--disp); font-style: italic; font-weight: 700; font-size: 1.7rem; margin: 2.2rem 0 .5rem; }
+.legal p { color: var(--acier); margin: 0 0 .8rem; }
+.legal strong { color: var(--ivoire); }
+
+/* Téléphone et tablette */
+@media (max-width: 900px) {
+  .ouverture .wrap, .specialite, .garages .colonnes { grid-template-columns: minmax(0, 1fr); }
+  .banc { max-width: 520px; }
+  .fiche, .equipe, .reseaux { grid-template-columns: minmax(0, 1fr); }
+  .etapes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .entete nav { display: none; }
+  .entete .bouton { margin-left: auto; }
+}
+@media (max-width: 560px) {
+  .fiche li { grid-template-columns: 1fr; gap: .4rem; }
+  .etapes { grid-template-columns: 1fr; }
+  .slogan .l1 { -webkit-text-stroke-width: 1.5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .banc .surmesure { animation: none; stroke-dashoffset: 0; }
+  .banc .gain { animation: none; opacity: 1; }
+}

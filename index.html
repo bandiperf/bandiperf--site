@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BandiPerf — Reprogrammation moteur sur mesure</title>
+  <meta name="description" content="Stage 1, 2 et 3, boîtes de vitesses, éthanol et gestions programmables. Reprog moteur sur mesure par Stanislas et Mathys, partout en France.">
+  <meta name="theme-color" content="#0B0B0C">
+  <meta property="og:title" content="BandiPerf — Ce que le constructeur bride, on le libère.">
+  <meta property="og:description" content="Reprogrammation moteur sur mesure : stage 1 à 3, boîtes, éthanol, gestions programmables.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://site.bandiperf.fr/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="entete">
+  <div class="wrap">
+    <a class="marque" href="#haut" aria-label="BandiPerf, retour en haut"><span class="plein">BANDI</span><span class="contour">PERF</span></a>
+    <nav aria-label="Navigation principale">
+      <a href="#prestations">Prestations</a>
+      <a href="#equipe">L’équipe</a>
+      <a href="#garages">Garages</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="bouton petit" href="http://ecurelay.bandiperf.fr:8005/login">Espace garages</a>
+  </div>
+</header>
+
+<main id="haut">
+
+  <section class="ouverture" aria-labelledby="slogan">
+    <div class="wrap">
+      <div>
+        <h1 class="slogan" id="slogan"><span class="l1">Ce que le constructeur bride,</span><span class="l2">on le libère.</span></h1>
+        <p class="chapo">Reprogrammation moteur <strong>sur mesure</strong> : stage 1, 2 et 3, boîtes de vitesses, éthanol et gestions programmables.
+        Pas de fichier téléchargé, chaque carto est écrite pour ta voiture.</p>
+        <div class="actions">
+          <a class="bouton rouge" href="mailto:bandiperf@gmail.com?subject=Demande%20de%20devis&amp;body=Salut%20BandiPerf%2C%0D%0A%0D%0AMarque%20et%20mod%C3%A8le%20%3A%0D%0AMotorisation%20%3A%0D%0ACalculateur%20%28si%20tu%20le%20connais%29%20%3A%0D%0ACe%20que%20je%20veux%20faire%20%28stage%2C%20bo%C3%AEte%2C%20%C3%A9thanol%E2%80%A6%29%20%3A%0D%0AVille%20%3A%0D%0A">Demander un devis</a>
+          <a class="bouton" href="#garages">Je suis un garage</a>
+        </div>
+      </div>
+
+      <div class="banc">
+        <svg viewBox="0 0 560 380" role="img" aria-label="Illustration : courbe de couple d’origine et courbe après une reprogrammation sur mesure">
+          <defs>
+            <linearGradient id="degrade-courbe" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#A3160F"/><stop offset=".55" stop-color="#FF3B2F"/><stop offset="1" stop-color="#FF3B2F"/>
+            </linearGradient>
+            <linearGradient id="degrade-gain" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#FF3B2F" stop-opacity=".28"/><stop offset="1" stop-color="#FF3B2F" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g class="grille">
+            <line x1="40" y1="330" x2="540" y2="330"/><line x1="40" y1="20" x2="40" y2="330"/>
+            <line x1="40" y1="268" x2="540" y2="268"/><line x1="40" y1="206" x2="540" y2="206"/>
+            <line x1="40" y1="144" x2="540" y2="144"/><line x1="40" y1="82" x2="540" y2="82"/>
+            <line x1="140" y1="20" x2="140" y2="330"/><line x1="240" y1="20" x2="240" y2="330"/>
+            <line x1="340" y1="20" x2="340" y2="330"/><line x1="440" y1="20" x2="440" y2="330"/>
+          </g>
+          <path class="gain" d="M50,296 C115,214 165,104 240,94 S385,120 530,206 L530,330 L50,330 Z"/>
+          <path class="origine" d="M50,302 C120,252 170,172 240,166 S380,186 530,252"/>
+          <path class="surmesure" d="M50,296 C115,214 165,104 240,94 S385,120 530,206"/>
+          <text class="axe" x="48" y="14">Couple</text>
+          <text class="axe" x="540" y="352" text-anchor="end">Régime moteur</text>
+          <line x1="352" y1="34" x2="380" y2="34" stroke="#FF3B2F" stroke-width="4" stroke-linecap="round"/>
+          <text class="legende" x="390" y="39">Sur mesure</text>
+          <line x1="352" y1="60" x2="380" y2="60" stroke="#9A9AA1" stroke-width="2.5" stroke-dasharray="7 7"/>
+          <text class="legende grise" x="390" y="65">Origine</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloc" id="prestations" aria-labelledby="titre-prestations">
+    <div class="wrap">
+      <h2 class="titre" id="titre-prestations">On fait tout. Sur mesure.</h2>
+      <p class="intro">Chaque moteur, chaque boîte et chaque projet est différent. On part de ta lecture d’origine et on écrit la carto qui va avec, jamais un fichier tout fait.</p>
+      <ul class="fiche">
+        <li><h3>Stage 1</h3><p>Plus de couple et de puissance sur une base 100 % d’origine. L’agrément en plus, sans toucher au matériel.</p></li>
+        <li><h3>Stage 2</h3><p>Pour les autos déjà préparées : admission, échappement, échangeur… La carto suit tes pièces.</p></li>
+        <li><h3>Stage 3</h3><p>Turbo, injecteurs, embrayage : la grosse prépa, calibrée au cas par cas.</p></li>
+        <li><h3>Boîte de vitesses</h3><p>Passages de rapports, couple admissible et limiteurs recalés pour encaisser la nouvelle puissance.</p></li>
+        <li><h3>Éthanol</h3><p>Une carto adaptée au superéthanol E85, calibrée pour ton moteur.</p></li>
+        <li><h3>Gestions programmables</h3><p>Calibration de gestions moteur programmables pour les projets les plus poussés.</p></li>
+      </ul>
+
+      <div class="specialite">
+        <p class="calculateurs">EDC15<br>EDC16</p>
+        <p><strong>Le diesel, c’est notre terrain.</strong> Les calculateurs Bosch EDC15 et EDC16, on les connaît par cœur.
+        On les travaille avec ECUCORE, notre propre logiciel, développé en interne.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloc" id="equipe" aria-labelledby="titre-equipe">
+    <div class="wrap">
+      <h2 class="titre" id="titre-equipe">Deux mappeurs. Zéro fichier en kit.</h2>
+      <p class="intro">Derrière BandiPerf, on est deux. On s’est formés tout seuls, et on mappe tous les deux chaque carto qui sort.</p>
+      <div class="equipe">
+        <article class="profil">
+          <p class="alias" aria-hidden="true">M.TDI</p>
+          <h3 class="prenom">Stanislas, alias M.TDI</h3>
+          <p>Autodidacte, il a appris la reprog par lui-même avant d’entrer en BTS Motorisation. Il mappe au quotidien.</p>
+        </article>
+        <article class="profil">
+          <p class="alias" aria-hidden="true">M.JTD</p>
+          <h3 class="prenom">Mathys, alias M.JTD</h3>
+          <p>Autodidacte lui aussi, il vient de la mécanique poids lourd. Les gros diesels, il les connaît de l’intérieur, et il mappe au quotidien.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloc" id="deroule" aria-labelledby="titre-deroule">
+    <div class="wrap">
+      <h2 class="titre" id="titre-deroule">Comment ça se passe</h2>
+      <p class="intro">Tu es un particulier ? Voici le chemin, de ton premier message jusqu’à la route.</p>
+      <ol class="etapes">
+        <li><h3>Tu nous écris</h3><p>Ton véhicule, ta motorisation et ce que tu veux en faire.</p></li>
+        <li><h3>Devis au garage</h3><p>Les prix sont faits sur devis par nos garages partenaires, comme <a href="https://www.madperfgarage.com/" rel="noopener">MadPerfGarage</a>.</p></li>
+        <li><h3>Lecture du calculateur</h3><p>Le garage lit ton calculateur et nous envoie le fichier d’origine.</p></li>
+        <li><h3>Ta carto sur mesure</h3><p>On l’écrit pour ta voiture, le garage l’installe, et on ajuste si besoin.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="garages" id="garages" aria-labelledby="titre-garages">
+    <div class="wrap colonnes">
+      <div>
+        <h2 class="titre" id="titre-garages">Tu es garage ? On bosse avec toi, partout en France.</h2>
+        <p class="intro">On travaille en file service via ECURELAY, notre plateforme : tu déposes la lecture, on écrit la carto sur mesure, tu la récupères au même endroit.</p>
+        <ul>
+          <li>Un dossier par véhicule, avec la lecture, les fichiers modifiés, les logs et les devis.</li>
+          <li>La messagerie avec nous, directement dans chaque dossier.</li>
+          <li>Une notification dès que ta carto est prête.</li>
+        </ul>
+        <div class="actions">
+          <a class="bouton" href="http://ecurelay.bandiperf.fr:8005/login">Se connecter à ECURELAY</a>
+          <a class="bouton clair" href="http://ecurelay.bandiperf.fr:8005/register">Demander un accès</a>
+        </div>
+      </div>
+      <aside class="partenaire" aria-labelledby="titre-partenaire">
+        <h3 id="titre-partenaire">Garage partenaire</h3>
+        <p>On travaille main dans la main avec MadPerfGarage, qui accueille nos clients particuliers et réalise les devis.</p>
+        <a href="https://www.madperfgarage.com/" rel="noopener">Découvrir MadPerfGarage</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="bloc" id="videos" aria-labelledby="titre-videos">
+    <div class="wrap">
+      <h2 class="titre" id="titre-videos">Les vrais avis, c’est en vidéo.</h2>
+      <p class="intro">Préparations, essais et retours de nos clients : tout se passe sur nos réseaux.</p>
+      <!--
+        AVIS CLIENTS EN VIDÉO
+        Pour ajouter une vidéo plus tard : remplace ce commentaire par un bloc
+        <div class="video">…</div> contenant le lecteur intégré fourni par
+        TikTok, Instagram ou YouTube (bouton « Partager » puis « Intégrer »).
+      -->
+      <div class="reseaux">
+        <a class="reseau" href="https://www.instagram.com/bandiperf/" rel="noopener">
+          <span class="nom">Instagram</span><span class="compte">@bandiperf</span>
+        </a>
+        <a class="reseau" href="https://www.tiktok.com/@bandiperf" rel="noopener">
+          <span class="nom">TikTok</span><span class="compte">@bandiperf</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloc contact" id="contact" aria-labelledby="titre-contact">
+    <div class="wrap">
+      <h2 class="titre" id="titre-contact">Parle-nous de ton projet.</h2>
+      <a class="email" href="mailto:bandiperf@gmail.com?subject=Demande%20de%20devis&amp;body=Salut%20BandiPerf%2C%0D%0A%0D%0AMarque%20et%20mod%C3%A8le%20%3A%0D%0AMotorisation%20%3A%0D%0ACalculateur%20%28si%20tu%20le%20connais%29%20%3A%0D%0ACe%20que%20je%20veux%20faire%20%28stage%2C%20bo%C3%AEte%2C%20%C3%A9thanol%E2%80%A6%29%20%3A%0D%0AVille%20%3A%0D%0A">bandiperf@gmail.com</a>
+      <p class="astuce">Donne-nous la marque, le modèle, la motorisation et ce que tu veux en faire. Le message s’ouvre déjà prérempli avec ces questions.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pied">
+  <div class="wrap">
+    <a class="marque" href="#haut" aria-label="BandiPerf, retour en haut"><span class="plein">BANDI</span><span class="contour">PERF</span></a>
+    <span>Stanislas &amp; Mathys</span>
+    <nav aria-label="Liens du pied de page">
+      <a href="https://www.instagram.com/bandiperf/" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@bandiperf" rel="noopener">TikTok</a>
+      <a href="http://ecurelay.bandiperf.fr:8005/login">ECURELAY</a>
+      <a href="mentions-legales.html">Mentions légales</a>
+    </nav>
+    <p class="avertissement">Toute modification de la puissance d’un véhicule doit être déclarée à son assureur. Certaines préparations sont réservées à un usage sur circuit.</p>
+  </div>
+</footer>
+
+</body>
+</html>
