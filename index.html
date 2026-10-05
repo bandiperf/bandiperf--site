@@ -22,7 +22,7 @@
       <a href="#prestations">Prestations</a>
       <a href="#equipe">L’équipe</a>
       <a href="#garages">Garages</a>
-      <a href="#contact">Contact</a>
+      <a href="#devis">Devis</a>
     </nav>
     <a class="bouton petit" href="http://ecurelay.bandiperf.fr:8005/login">Espace garages</a>
   </div>
@@ -37,7 +37,7 @@
         <p class="chapo">Reprogrammation moteur <strong>sur mesure</strong> : stage 1, 2 et 3, boîtes de vitesses, éthanol et gestions programmables.
         Pas de fichier téléchargé, chaque carto est écrite pour ta voiture.</p>
         <div class="actions">
-          <a class="bouton rouge" href="mailto:bandiperf@gmail.com?subject=Demande%20de%20devis&amp;body=Salut%20BandiPerf%2C%0D%0A%0D%0AMarque%20et%20mod%C3%A8le%20%3A%0D%0AMotorisation%20%3A%0D%0ACalculateur%20%28si%20tu%20le%20connais%29%20%3A%0D%0ACe%20que%20je%20veux%20faire%20%28stage%2C%20bo%C3%AEte%2C%20%C3%A9thanol%E2%80%A6%29%20%3A%0D%0AVille%20%3A%0D%0A">Demander un devis</a>
+          <a class="bouton rouge" href="#devis">Demander un devis</a>
           <a class="bouton" href="#garages">Je suis un garage</a>
         </div>
       </div>
@@ -150,31 +150,176 @@
   </section>
 
   <section class="bloc" id="videos" aria-labelledby="titre-videos">
-    <div class="wrap">
-      <h2 class="titre" id="titre-videos">Les vrais avis, c’est en vidéo.</h2>
-      <p class="intro">Préparations, essais et retours de nos clients : tout se passe sur nos réseaux.</p>
-      <!--
-        AVIS CLIENTS EN VIDÉO
-        Pour ajouter une vidéo plus tard : remplace ce commentaire par un bloc
-        <div class="video">…</div> contenant le lecteur intégré fourni par
-        TikTok, Instagram ou YouTube (bouton « Partager » puis « Intégrer »).
-      -->
-      <div class="reseaux">
-        <a class="reseau" href="https://www.instagram.com/bandiperf/" rel="noopener">
-          <span class="nom">Instagram</span><span class="compte">@bandiperf</span>
-        </a>
-        <a class="reseau" href="https://www.tiktok.com/@bandiperf" rel="noopener">
-          <span class="nom">TikTok</span><span class="compte">@bandiperf</span>
-        </a>
+    <div class="wrap avis-video">
+      <div class="avis-texte">
+        <h2 class="titre" id="titre-videos">Les vrais avis, c’est en vidéo.</h2>
+        <p class="intro">Nos clients racontent leur prépa, face caméra, juste après l’essai. Toutes les vidéos sont aussi sur nos réseaux.</p>
+        <div class="reseaux">
+          <a class="reseau" href="https://www.instagram.com/bandiperf/" rel="noopener">
+            <span class="nom">Instagram</span><span class="compte">@bandiperf</span>
+          </a>
+          <a class="reseau" href="https://www.tiktok.com/@bandiperf" rel="noopener">
+            <span class="nom">TikTok</span><span class="compte">@bandiperf</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Lecteur d'avis en vidéo : la liste des vidéos est dans videos.json (voir LISEZMOI.md).
+           Il reste masqué tant que la liste est vide. -->
+      <div class="lecteur" id="lecteur" data-source="videos.json" role="region" aria-roledescription="carrousel" aria-label="Avis clients en vidéo" hidden>
+        <div class="ecran">
+          <div class="progression" aria-hidden="true"></div>
+          <div class="entete-video">
+            <span class="avatar" aria-hidden="true"><span>BP</span></span>
+            <span class="compte-video"><b>bandiperf</b><span>Avis client</span></span>
+            <button class="son" type="button" aria-label="Activer le son">
+              <svg class="icone-muet" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l4 6M21 9l-4 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <svg class="icone-son" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+          <video playsinline muted preload="metadata"></video>
+          <button class="zone prec" type="button" aria-label="Vidéo précédente"></button>
+          <button class="zone suiv" type="button" aria-label="Vidéo suivante"></button>
+          <button class="lecture" type="button" aria-label="Lire la vidéo" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+          </button>
+          <div class="legende-video" aria-live="polite">
+            <p class="client"></p>
+            <p class="details"></p>
+            <p class="citation"></p>
+            <a class="lien-post" rel="noopener" hidden></a>
+          </div>
+        </div>
+        <div class="nav-lecteur">
+          <button class="fleche prec" type="button" aria-label="Vidéo précédente">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <span class="compteur" aria-live="polite"></span>
+          <button class="fleche suiv" type="button" aria-label="Vidéo suivante">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="bloc contact" id="contact" aria-labelledby="titre-contact">
-    <div class="wrap">
-      <h2 class="titre" id="titre-contact">Parle-nous de ton projet.</h2>
-      <a class="email" href="mailto:bandiperf@gmail.com?subject=Demande%20de%20devis&amp;body=Salut%20BandiPerf%2C%0D%0A%0D%0AMarque%20et%20mod%C3%A8le%20%3A%0D%0AMotorisation%20%3A%0D%0ACalculateur%20%28si%20tu%20le%20connais%29%20%3A%0D%0ACe%20que%20je%20veux%20faire%20%28stage%2C%20bo%C3%AEte%2C%20%C3%A9thanol%E2%80%A6%29%20%3A%0D%0AVille%20%3A%0D%0A">bandiperf@gmail.com</a>
-      <p class="astuce">Donne-nous la marque, le modèle, la motorisation et ce que tu veux en faire. Le message s’ouvre déjà prérempli avec ces questions.</p>
+  <section class="bloc devis" id="devis" aria-labelledby="titre-devis">
+    <div class="wrap devis-grille">
+      <div class="devis-intro">
+        <h2 class="titre" id="titre-devis">Ton devis en trois étapes.</h2>
+        <p class="intro">Décris ta voiture et ton projet. On revient vers toi pour en parler, puis notre garage partenaire établit le devis.</p>
+        <p class="devis-alt">Tu préfères écrire directement ?<br><a href="mailto:bandiperf@gmail.com">bandiperf@gmail.com</a></p>
+      </div>
+
+      <!-- Formulaire de devis : envoyé par e-mail (Web3Forms) et sur Discord (relais Cloudflare).
+           Les deux réglages à remplir sont expliqués dans LISEZMOI.md. -->
+      <form class="formulaire" id="form-devis" action="https://api.web3forms.com/submit" method="post"
+            data-relais="COLLE_ICI_ADRESSE_DU_RELAIS_CLOUDFLARE">
+        <input type="hidden" name="access_key" value="07773320-78d7-4122-8847-bf4330c8a9ec">
+        <input type="hidden" name="subject" value="Demande de devis — site BandiPerf">
+        <input type="hidden" name="from_name" value="Site BandiPerf">
+        <input type="checkbox" name="botcheck" class="piege" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <ol class="etapes-devis" aria-label="Étapes du devis">
+          <li class="actuelle" aria-current="step"><span class="barre"></span>1. Ton véhicule</li>
+          <li><span class="barre"></span>2. Ton projet</li>
+          <li><span class="barre"></span>3. Tes coordonnées</li>
+        </ol>
+
+        <fieldset class="etape-devis" data-etape="1">
+          <legend><span class="titre-etape" tabindex="-1">Ton véhicule</span></legend>
+          <div class="champs-2">
+            <label>Marque <input name="Marque" required maxlength="40" placeholder="Volkswagen" autocomplete="off"></label>
+            <label>Modèle <input name="Modèle" required maxlength="40" placeholder="Golf 7" autocomplete="off"></label>
+            <label>Motorisation <input name="Motorisation" required maxlength="60" placeholder="2.0 TDI 150 ch"></label>
+            <label><span class="lib">Année <span class="facultatif">facultatif</span></span> <input name="Année" inputmode="numeric" maxlength="4" pattern="(19|20)[0-9]{2}" placeholder="2016"></label>
+            <label><span class="lib">Carburant <span class="facultatif">facultatif</span></span>
+              <select name="Carburant">
+                <option value="">—</option><option>Diesel</option><option>Essence</option><option>Hybride</option><option>Éthanol (E85)</option>
+              </select>
+            </label>
+            <label><span class="lib">Boîte <span class="facultatif">facultatif</span></span>
+              <select name="Boîte">
+                <option value="">—</option><option>Manuelle</option><option>Automatique</option><option>Robotisée / double embrayage</option>
+              </select>
+            </label>
+            <label><span class="lib">Kilométrage <span class="facultatif">facultatif</span></span> <input name="Kilométrage" inputmode="numeric" maxlength="9" placeholder="120 000"></label>
+          </div>
+
+          <fieldset class="choix-oui-non">
+            <legend>Ton véhicule est-il déjà préparé ?</legend>
+            <div class="segments">
+              <label><input type="radio" name="Déjà préparé" value="Non" required><span>Non, il est d’origine</span></label>
+              <label><input type="radio" name="Déjà préparé" value="Oui"><span>Oui</span></label>
+            </div>
+          </fieldset>
+          <label class="bloc-prepa" hidden>Qu’est-ce qui est déjà fait ?
+            <textarea name="Préparation actuelle" rows="3" maxlength="1000" placeholder="Reprog stage 1, admission, ligne inox, échangeur, embrayage renforcé…"></textarea>
+          </label>
+
+          <div class="nav-devis"><button type="button" class="bouton rouge suivant">Continuer</button></div>
+        </fieldset>
+
+        <fieldset class="etape-devis" data-etape="2">
+          <legend><span class="titre-etape" tabindex="-1">Ton projet</span></legend>
+          <fieldset class="puces">
+            <legend>Ce que tu recherches <span class="facultatif">plusieurs choix possibles</span></legend>
+            <label><input type="checkbox" name="Recherche" value="Puissance"><span>Puissance</span></label>
+            <label><input type="checkbox" name="Recherche" value="Couple / reprises"><span>Couple / reprises</span></label>
+            <label><input type="checkbox" name="Recherche" value="Pops &amp; bangs / flammes"><span>Pops &amp; bangs / flammes</span></label>
+            <label><input type="checkbox" name="Recherche" value="Baisse de consommation"><span>Baisse de consommation</span></label>
+            <label><input type="checkbox" name="Recherche" value="Boîte de vitesses"><span>Boîte de vitesses</span></label>
+            <label><input type="checkbox" name="Recherche" value="Éthanol (E85)"><span>Éthanol (E85)</span></label>
+            <label><input type="checkbox" name="Recherche" value="Gestion programmable"><span>Gestion programmable</span></label>
+            <label><input type="checkbox" name="Recherche" value="Autre"><span>Autre</span></label>
+          </fieldset>
+          <div class="champs-2">
+            <label>Stage visé
+              <select name="Stage visé">
+                <option>Je ne sais pas encore</option><option>Stage 1</option><option>Stage 2</option><option>Stage 3</option>
+              </select>
+            </label>
+            <label>Usage
+              <select name="Usage">
+                <option>Route</option><option>Circuit</option><option>Route et circuit</option>
+              </select>
+            </label>
+          </div>
+          <label>Décris ton projet en détail
+            <textarea name="Description" rows="6" required minlength="30" maxlength="3000"
+              placeholder="Ce que tu veux ressentir au volant, les pièces que tu comptes monter, ton budget, tes contraintes…"></textarea>
+            <span class="aide">Plus c’est précis, plus notre réponse le sera. 30 caractères minimum.</span>
+          </label>
+          <div class="nav-devis">
+            <button type="button" class="bouton precedent">Retour</button>
+            <button type="button" class="bouton rouge suivant">Continuer</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="etape-devis" data-etape="3">
+          <legend><span class="titre-etape" tabindex="-1">Tes coordonnées</span></legend>
+          <div class="champs-2">
+            <label>Prénom <input name="Prénom" required maxlength="40" autocomplete="given-name"></label>
+            <label><span class="lib">Ville ou département <span class="facultatif">facultatif</span></span> <input name="Ville" maxlength="60" autocomplete="address-level2" placeholder="Nantes, 44…"></label>
+            <label>E-mail <input type="email" name="email" required maxlength="120" autocomplete="email" placeholder="toi@exemple.fr"></label>
+            <label><span class="lib">Téléphone <span class="facultatif">facultatif</span></span> <input type="tel" name="Téléphone" maxlength="20" autocomplete="tel" placeholder="06 12 34 56 78"></label>
+          </div>
+          <label class="accord">
+            <input type="checkbox" name="Accord" value="Oui" required>
+            <span>J’accepte que BandiPerf utilise ces informations pour me recontacter au sujet de ma demande.</span>
+          </label>
+          <div class="nav-devis">
+            <button type="button" class="bouton precedent">Retour</button>
+            <button type="submit" class="bouton rouge envoyer">Envoyer ma demande</button>
+          </div>
+        </fieldset>
+
+        <p class="devis-erreur" role="alert" hidden></p>
+        <div class="devis-envoye" tabindex="-1" hidden>
+          <p class="devis-envoye-titre">C’est envoyé.</p>
+          <p>On a bien reçu ta demande. On revient vers toi très vite, par e-mail ou par téléphone.</p>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -194,5 +339,7 @@
   </div>
 </footer>
 
+<script src="videos.js" defer></script>
+<script src="devis.js" defer></script>
 </body>
 </html>

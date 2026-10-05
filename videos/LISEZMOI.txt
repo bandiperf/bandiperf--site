@@ -1,0 +1,2 @@
+Dépose ici les vidéos d'avis clients (MP4) et, si tu veux, une image d'aperçu (JPG) par vidéo.
+Puis ajoute chaque vidéo dans le fichier videos.json à la racine du site (voir LISEZMOI.md).
