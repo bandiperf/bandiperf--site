@@ -295,3 +295,34 @@ section { scroll-margin-top: 80px; }
 .entete .marque img { height: 34px; }
 .pied .marque img { height: 28px; }
 @media (max-width: 560px) { .entete .marque img { height: 28px; } }
+
+/* Page 404 */
+.introuvable { padding: clamp(64px, 10vw, 140px) 0; }
+.code-erreur { margin: 0; font-family: var(--disp); font-style: italic; font-weight: 800; font-size: clamp(6rem, 22vw, 14rem); line-height: .85;
+  color: transparent; -webkit-text-stroke: 2px var(--grenat); }
+
+/* FAQ */
+.faq { display: flex; flex-direction: column; border-top: 1px solid var(--trait); max-width: 52rem; }
+.faq details { border-bottom: 1px solid var(--trait); }
+.faq summary { cursor: pointer; list-style: none; padding: 1.2rem 2.5rem 1.2rem 0; position: relative; font-weight: 700; font-size: 1.1rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: .4rem; top: 50%; transform: translateY(-50%); font-family: var(--disp);
+  font-size: 1.8rem; font-weight: 800; color: var(--rouge); transition: transform .2s; }
+.faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.faq summary:focus-visible { outline: 2px solid var(--rouge); outline-offset: 4px; }
+.faq details p { margin: 0 0 1.3rem; color: var(--acier); max-width: 46rem; }
+.entete .wrap > .bouton:last-child { margin-left: auto; }
+
+/* Prix indicatif, garage partenaire, contact Instagram */
+.prix-indicatif { display: block; margin-top: .45rem; color: var(--ivoire); font-weight: 600; }
+.adresse-garage { font-style: normal; line-height: 1.55; margin: 0 0 1rem; padding: .9rem 1rem; background: rgba(0, 0, 0, .25); border-radius: 4px; }
+.adresse-garage a { color: #fff; font-weight: 700; }
+.liens-garage { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; }
+.liens-garage a { font-weight: 700; }
+.contacts-directs { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.2rem; margin: .6rem 0 1.6rem; }
+.bouton.insta { gap: .55rem; border-color: transparent; color: #fff;
+  background: linear-gradient(135deg, #f58529, #dd2a7b 45%, #8134af 75%, #515bd4); }
+.bouton.insta:hover { filter: brightness(1.1); }
+.bouton.insta svg { width: 20px; height: 20px; }
+.email-direct { color: var(--ivoire); font-weight: 700; }
+.devis-prix { color: var(--acier); font-size: .95rem; max-width: 26rem; padding-top: 1.2rem; border-top: 1px solid var(--trait); margin: 0; }

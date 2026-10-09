@@ -5,14 +5,17 @@
  * Réglages du Worker (Settings → Variables and Secrets) :
  *   DISCORD_WEBHOOK  (type Secret) : l'URL du webhook Discord. Elle n'apparaît jamais sur le site.
  *   ALLOWED_ORIGIN   (facultatif)  : sites autorisés, séparés par des virgules.
- *                                    Par défaut : https://site.bandiperf.fr
+ *                                    Par défaut : site.bandiperf.fr, en https et en http.
+ *
+ * Chaque demande refusée est notée dans les journaux du Worker (onglet Logs / Observability)
+ * avec sa raison, pour pouvoir diagnostiquer une notification qui n'arrive pas.
  */
 
 const ROUGE = 0xff3b2f;
 
 export default {
   async fetch(request, env) {
-    const autorises = (env.ALLOWED_ORIGIN || "https://site.bandiperf.fr")
+    const autorises = (env.ALLOWED_ORIGIN || "https://site.bandiperf.fr,http://site.bandiperf.fr")
       .split(",").map((s) => s.trim()).filter(Boolean);
     const origine = request.headers.get("Origin") || "";
     const cors = {
@@ -21,8 +24,10 @@ export default {
       "Access-Control-Allow-Headers": "Content-Type",
       "Vary": "Origin",
     };
-    const repondre = (corps, statut = 200) =>
-      new Response(JSON.stringify(corps), { status: statut, headers: { ...cors, "Content-Type": "application/json" } });
+    const repondre = (corps, statut = 200) => {
+      if (!corps.ok) console.log(`Refusé (${statut}) : ${corps.erreur} — origine « ${origine || "aucune"} »`);
+      return new Response(JSON.stringify(corps), { status: statut, headers: { ...cors, "Content-Type": "application/json" } });
+    };
 
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors });
     if (request.method !== "POST") return repondre({ ok: false, erreur: "méthode non autorisée" }, 405);
@@ -40,8 +45,9 @@ export default {
     if (d.botcheck) return repondre({ ok: true });
 
     const t = (cle, max = 300) => String(d[cle] ?? "").trim().slice(0, max);
-    if (!t("Marque") || !t("Modèle") || t("Description", 3000).length < 30 || !t("email")) {
-      return repondre({ ok: false, erreur: "demande incomplète" }, 400);
+    // Le formulaire a déjà tout vérifié : ici, on exige seulement de quoi identifier la demande.
+    if (!t("Marque") && !t("Modèle") && !t("email")) {
+      return repondre({ ok: false, erreur: "demande vide" }, 400);
     }
 
     const ligne = (...morceaux) => morceaux.filter(Boolean).join(" · ");
@@ -61,7 +67,7 @@ export default {
       allowed_mentions: { parse: [] },
       embeds: [{
         title: `Demande de devis — ${t("Marque")} ${t("Modèle")}`.slice(0, 256),
-        description: t("Description", 3000),
+        description: t("Description", 3000) || "(pas de description)",
         color: ROUGE,
         fields: champs,
         footer: { text: "site.bandiperf.fr" },
@@ -75,10 +81,11 @@ export default {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(message),
       });
-      if (!r.ok) return repondre({ ok: false, erreur: `Discord a répondu ${r.status}` }, 502);
+      if (!r.ok) return repondre({ ok: false, erreur: `Discord a répondu ${r.status} : ${(await r.text()).slice(0, 200)}` }, 502);
     } catch {
       return repondre({ ok: false, erreur: "Discord injoignable" }, 502);
     }
+    console.log(`Demande transmise à Discord : ${t("Marque")} ${t("Modèle")} (${t("Prénom")})`);
     return repondre({ ok: true });
   },
 };

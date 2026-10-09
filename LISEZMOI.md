@@ -1,6 +1,6 @@
 # Vitrine BandiPerf
 
-Site statique : `index.html`, `mentions-legales.html`, `style.css`, `videos.js`, `videos.json`, `devis.js`, `favicon.svg`.
+Site statique : `index.html`, `mentions-legales.html`, `404.html`, `robots.txt`, `sitemap.xml`, `style.css`, `videos.js`, `videos.json`, `devis.js`, `favicon.svg`.
 Le dossier `cloudflare` contient le relais Discord (à installer chez Cloudflare, voir plus bas).
 Le fichier `CNAME` indique à GitHub Pages l'adresse `site.bandiperf.fr`.
 
@@ -91,6 +91,13 @@ L'ordre de la liste est l'ordre de lecture. Clique sur « Commit changes » : le
 
 Attention aux guillemets droits `"` et aux virgules : une virgule en trop ou en moins et le lecteur
 reste masqué. En cas de doute, colle ton texte sur jsonlint.com pour le vérifier.
+
+## Activer la FAQ
+
+Une section « Les questions qu'on nous pose » est prête dans `index.html`, mais masquée.
+Pour l'afficher : supprime la ligne qui commence par `<!-- DÉBUT FAQ` et la ligne `FIN FAQ -->`,
+puis remplace chaque `VOTRE RÉPONSE` par votre vraie réponse. Tu peux supprimer ou ajouter des questions
+(un bloc `<details>` par question).
 
 ## Modifier le reste du site
 - Textes : directement dans `index.html`.
