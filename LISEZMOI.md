@@ -92,12 +92,11 @@ L'ordre de la liste est l'ordre de lecture. Clique sur « Commit changes » : le
 Attention aux guillemets droits `"` et aux virgules : une virgule en trop ou en moins et le lecteur
 reste masqué. En cas de doute, colle ton texte sur jsonlint.com pour le vérifier.
 
-## Activer la FAQ
+## Modifier la FAQ
 
-Une section « Les questions qu'on nous pose » est prête dans `index.html`, mais masquée.
-Pour l'afficher : supprime la ligne qui commence par `<!-- DÉBUT FAQ` et la ligne `FIN FAQ -->`,
-puis remplace chaque `VOTRE RÉPONSE` par votre vraie réponse. Tu peux supprimer ou ajouter des questions
-(un bloc `<details>` par question).
+La FAQ est dans `index.html`, section `id="faq"` : un bloc `<details>` par question
+(`<summary>` = la question, `<p>` = la réponse). Pense à modifier aussi la même question dans le bloc
+`"@type": "FAQPage"` en haut du fichier (dans `<head>`) : c'est la version que lit Google.
 
 ## Modifier le reste du site
 - Textes : directement dans `index.html`.
