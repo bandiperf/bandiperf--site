@@ -66,6 +66,39 @@ img, svg { max-width: 100%; }
 .banc .gain { fill: url(#degrade-gain); opacity: 0; animation: apparait 1s 1.6s forwards; }
 .banc .legende { fill: var(--ivoire); font-family: var(--sans); font-size: 14px; font-weight: 600; }
 .banc .legende.grise { fill: var(--acier); font-weight: 500; }
+.banc .repere { stroke: var(--rouge); stroke-opacity: .45; stroke-width: 1; stroke-dasharray: 3 5; opacity: 0; animation: apparait 1s 2s forwards; }
+.banc .pic { opacity: 0; animation: apparait .8s 2.2s forwards; }
+.banc .pic-halo { fill: var(--rouge); opacity: .55; }
+.banc .pic-point { fill: var(--ivoire); stroke: var(--rouge); stroke-width: 3; }
+.banc .pic-onde { fill: none; stroke: var(--rouge); stroke-width: 2; transform-box: fill-box; transform-origin: center; animation: onde 2.4s 2.4s ease-out infinite; opacity: 0; }
+.banc .balayage { opacity: 0; }
+@keyframes onde { 0% { transform: scale(1); opacity: .9; } 70%, 100% { transform: scale(3.4); opacity: 0; } }
+
+/* Choix du carburant (affiché seulement quand banc.js est chargé) */
+.carburants { position: relative; display: none; gap: 2px; padding: 4px; margin: 0 0 14px auto; width: max-content; max-width: 100%;
+  background: var(--panneau); border: 1px solid var(--trait); border-radius: 999px; }
+.banc.anime .carburants { display: flex; }
+.carburants button { position: relative; z-index: 1; overflow: hidden; border: 0; background: none; color: var(--acier); cursor: pointer;
+  font: italic 700 1rem/1 var(--disp); letter-spacing: .04em; text-transform: uppercase; padding: .62rem 1.05rem; border-radius: 999px;
+  transition: color .45s ease; }
+.carburants button:hover { color: var(--ivoire); }
+.carburants button[aria-selected="true"] { color: #fff; }
+.carburants button i { position: absolute; left: 18%; right: 18%; bottom: 5px; height: 2px; border-radius: 2px; background: rgba(255, 255, 255, .85);
+  transform: scaleX(0); transform-origin: left; opacity: 0; }
+.carburants button[aria-selected="true"] i { opacity: .9; }
+.carburants .curseur { position: absolute; z-index: 0; top: 4px; bottom: 4px; left: 0; width: 0; border-radius: 999px;
+  background: linear-gradient(180deg, var(--rouge), var(--grenat)); box-shadow: 0 6px 22px -6px rgba(255, 59, 47, .65);
+  transition: transform .65s cubic-bezier(.65, 0, .25, 1), width .65s cubic-bezier(.65, 0, .25, 1); }
+.banc-texte { margin: 10px 0 0; min-height: 3.2em; color: var(--acier); font-size: .98rem; }
+.banc-texte b { color: var(--ivoire); font: italic 700 1.05rem var(--disp); text-transform: uppercase; letter-spacing: .04em; margin-right: .35rem; }
+.banc-texte.sort { animation: texte-sort .28s ease-in forwards; }
+.banc-texte.entre { animation: texte-entre .5s cubic-bezier(.2, .8, .2, 1) forwards; }
+@keyframes texte-sort { to { opacity: 0; transform: translateY(-6px); filter: blur(2px); } }
+@keyframes texte-entre { from { opacity: 0; transform: translateY(8px); filter: blur(2px); } to { opacity: 1; transform: none; filter: none; } }
+@media (max-width: 560px) {
+  .carburants { margin-inline: auto; }
+  .carburants button { font-size: .9rem; padding: .58rem .85rem; }
+}
 @keyframes trace { to { stroke-dashoffset: 0; } }
 @keyframes apparait { to { opacity: 1; } }
 
@@ -290,7 +323,10 @@ section { scroll-margin-top: 80px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .banc .surmesure { animation: none; stroke-dashoffset: 0; }
-  .banc .gain { animation: none; opacity: 1; }
+  .banc .gain, .banc .repere, .banc .pic { animation: none; opacity: 1; }
+  .banc .pic-onde { animation: none; }
+  .carburants .curseur, .carburants button { transition: none; }
+  .banc-texte.sort, .banc-texte.entre { animation: none; }
 }
 .entete .marque img { height: 34px; }
 .pied .marque img { height: 28px; }

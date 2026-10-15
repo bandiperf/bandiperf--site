@@ -2,7 +2,8 @@
 
 Site statique : `index.html`, `mentions-legales.html`, `404.html`, `robots.txt`, `sitemap.xml`, `style.css`, `videos.js`, `videos.json`, `devis.js`, `favicon.svg`.
 Le dossier `cloudflare` contient le relais Discord (à installer chez Cloudflare, voir plus bas).
-Le fichier `CNAME` indique à GitHub Pages l'adresse `site.bandiperf.fr`.
+Le fichier `CNAME` indique à GitHub Pages l'adresse `bandiperf.fr` (`www.bandiperf.fr` y est redirigé
+automatiquement par GitHub ; `site.bandiperf.fr` est redirigé par le dépôt `bandiperf-redirection`).
 
 ## Activer le formulaire de devis
 
@@ -26,7 +27,7 @@ Dans chaque e-mail reçu, le bouton « Répondre » répond directement au clien
 
 Le site envoie aussi chaque demande sur Discord, en passant par un petit relais gratuit chez
 **Cloudflare Workers**. Le relais garde l'adresse du webhook Discord secrète (elle n'apparaît jamais
-dans le code du site) et n'accepte que les demandes venant de `site.bandiperf.fr`.
+dans le code du site) et n'accepte que les demandes venant de `bandiperf.fr` (et de ses anciennes adresses).
 Le code du relais est dans `cloudflare/worker-devis.js`. À faire une seule fois :
 
 1. Dans Discord, crée un salon `#devis` et un webhook pour ce salon (copie son URL).
@@ -42,7 +43,7 @@ Le code du relais est dans `cloudflare/worker-devis.js`. À faire une seule fois
 
 Si tu testes avant d'avoir coché « Enforce HTTPS » sur GitHub Pages, le site est encore en `http://`
 et le relais le refusera. Ajoute alors dans le Worker une variable (texte) `ALLOWED_ORIGIN` avec la
-valeur `https://site.bandiperf.fr,http://site.bandiperf.fr`.
+valeur `https://bandiperf.fr,http://bandiperf.fr`.
 
 Le client voit la confirmation dès que la demande est arrivée par au moins un des deux canaux
 (e-mail ou Discord) : si l'un tombe en panne, la demande n'est pas perdue.

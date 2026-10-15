@@ -5,7 +5,8 @@
  * Réglages du Worker (Settings → Variables and Secrets) :
  *   DISCORD_WEBHOOK  (type Secret) : l'URL du webhook Discord. Elle n'apparaît jamais sur le site.
  *   ALLOWED_ORIGIN   (facultatif)  : sites autorisés, séparés par des virgules.
- *                                    Par défaut : site.bandiperf.fr, en https et en http.
+ *                                    Par défaut : bandiperf.fr, www.bandiperf.fr et site.bandiperf.fr,
+ *                                    en https et en http.
  *
  * Chaque demande refusée est notée dans les journaux du Worker (onglet Logs / Observability)
  * avec sa raison, pour pouvoir diagnostiquer une notification qui n'arrive pas.
@@ -15,7 +16,8 @@ const ROUGE = 0xff3b2f;
 
 export default {
   async fetch(request, env) {
-    const autorises = (env.ALLOWED_ORIGIN || "https://site.bandiperf.fr,http://site.bandiperf.fr")
+    const autorises = (env.ALLOWED_ORIGIN || ["bandiperf.fr", "www.bandiperf.fr", "site.bandiperf.fr"]
+      .flatMap((d) => [`https://${d}`, `http://${d}`]).join(","))
       .split(",").map((s) => s.trim()).filter(Boolean);
     const origine = request.headers.get("Origin") || "";
     const cors = {
@@ -70,7 +72,7 @@ export default {
         description: t("Description", 3000) || "(pas de description)",
         color: ROUGE,
         fields: champs,
-        footer: { text: "site.bandiperf.fr" },
+        footer: { text: "bandiperf.fr" },
         timestamp: new Date().toISOString(),
       }],
     };

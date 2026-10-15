@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /cloudflare/
 
-Sitemap: https://site.bandiperf.fr/sitemap.xml
+Sitemap: https://bandiperf.fr/sitemap.xml
